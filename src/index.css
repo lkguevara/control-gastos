@@ -1,5 +1,5 @@
 :root {
-    --azul: #3b82f6;
+    --azul: #2B3467;
     --blanco: #ffffff;
     --gris-claro: #f5f5f5;
     --gris: #94a3b8;
@@ -28,7 +28,7 @@ html {
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: 2.5rem;
 }
 h2 {
     font-size: 3rem;
@@ -62,6 +62,9 @@ header h1 {
     padding: 10rem 0;
 }
 @media (min-width: 768px) {
+    h1 {
+        font-size: 3.5rem;
+    }
     .formulario {
         padding: 5rem 0;
         width: 60rem;
@@ -83,23 +86,33 @@ header h1 {
 }
 
 .formulario label {
-    color: var(--azul);
-    font-size: 2.8rem;
+    color: rgb(26, 102, 133);
+    font-size: 2.3rem;
     text-align: center;
     margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    
 }
 
 .formulario input[type="text"],
 .formulario input[type="number"] {
     background-color: var(--gris-claro);
     border-radius: 1rem;
-    padding: 1rem;
+    /* padding: 1rem; */
     border: none;
     flex: 1;
     font-size: 1.6rem;
+    width: 100%;
+    
 }
+.formulario input[type="text"]::placeholder{
+    font-size: 1.9rem;
+
+}
+
 .formulario input[type="submit"] {
-    background-color: #1048a4;
+    background-color: rgb(26, 102, 133);
     border: none;
     padding: 1rem;
     text-align: center;
@@ -110,15 +123,18 @@ header h1 {
     font-size: 1.9rem;
     width: 100%;
     transition: background-color 300ms ease;
+    border-radius: 1rem;
 }
 @media (min-width: 768px) {
     .formulario input[type="submit"] {
-        display: block;
         padding: 1rem 5rem;
+        width: auto;
+        display: flex;
+        margin: auto;
     }
 }
 .formulario input[type="submit"]:hover {
-    background-color: #042a67;
+    background-color: rgb(19, 71, 92);
     cursor: pointer;
 }
 

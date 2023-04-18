@@ -1,10 +1,12 @@
 import Header from "./components/Header"
 import React, { useState } from 'react'
+import ListaGastos from "./components/ListaGastos"
 
 function App() {
   
-  const [ presupuesto, setPresupuesto ] = useState(0);
+  const [ presupuesto, setPresupuesto ] = useState('');
   const [ presupuestoValido, setPresupuestoValido ] = useState(false);
+
 
   return (
     <div>
@@ -14,6 +16,10 @@ function App() {
       presupuestoValido = {presupuestoValido}
       setPresupuestoValido = {setPresupuestoValido}
      />
+
+     {
+        presupuestoValido && <ListaGastos />
+     }
     </div>
   )
 }

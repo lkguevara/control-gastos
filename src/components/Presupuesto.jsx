@@ -26,9 +26,7 @@ const Presupuesto = ({presupuesto, setPresupuesto, setPresupuestoValido}) => {
 
         setPresupuestoValido(true);
 
-        console.log(presupuesto)
-        // resetear el formulario
-        setPresupuesto('');
+        // console.log(presupuesto)
     }
 
 
@@ -36,7 +34,7 @@ const Presupuesto = ({presupuesto, setPresupuesto, setPresupuestoValido}) => {
         <div className="contenedor-presupuesto contenedor sombra">
             <form className='formulario' onSubmit={handleSubmit}>
                 <div className="campo">
-                    <label>Definir presupuesto</label>
+                    <h2>Definir presupuesto</h2>
                     <input 
                         className='nuevo-presupuesto'
                         type="number" 

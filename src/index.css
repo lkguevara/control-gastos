@@ -34,6 +34,8 @@ h1 {
 }
 h2 {
     font-size: 3rem;
+    color:rgb(19, 71, 92);
+    text-align: center;
 }
 
 .sombra {
@@ -66,9 +68,9 @@ header h1 {
 
 .contenedor-presupuesto {
     margin-top: -4rem;
-    /* display: flex;
+    display: flex;
     justify-content: space-between;
-    align-items: center; */
+    align-items: center;
     transform: translateY(5rem);
 }
 
@@ -87,44 +89,106 @@ header h1 {
 .formulario {
     width: 95%;
     margin: 0 auto;
-    padding: 10rem 0;
+    padding: 8rem 0;
 }
 
-/* media queries */
-
-@media (min-width: 768px) {
-    h1 {
-        font-size: 3rem;
-    }
-    .contenedor {
-        width: 40%;
-        margin: 0 auto;
-    }
-
-    .formulario {
-        padding: 5rem 0;
-        width: 20rem;
-    }
+/* componente control presupuesto */
+.contenido-presupuesto {
+    width: 100%;
+}
+.contenido-presupuesto p {
+    font-weight: 400;
+    color: var(--gris-oscuro);
+    font-size: 2.4rem;
+    text-align: left;
 }
 
-@media (min-width: 1024px) { 
-    .contenedor {
-        width: 30%;
-    }
-
-    .formulario {
-        padding: 5rem 0;
-        width: 40rem;
-    }
-    
+.contenido-presupuesto span {
+    font-weight: 900;
+    color: var(--azul);
+    margin-right: 1rem;
 }
+
+.add__expense,.reset__app{
+    background-color: #29a4f7;
+    border: none;
+    padding: 1rem;
+    color: var(--blanco);
+    font-size: 1.7rem;
+    width: 100%;
+    border-radius: 0.8rem;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.contenido-presupuesto p.negativo,
+.contenido-presupuesto p.negativo span {
+    color: red;
+}
+
+.dos-columnas {
+    flex-direction: column;
+}
+.dos-columnas :first-child {
+    margin-bottom: 2rem;
+}
+
+
+/* modal */
+.modal {
+    position: absolute;
+    background-color: rgb(0 0 0 / 0.92);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.modal .cerrar-modal {
+    position: absolute;
+    right: 3rem;
+    top: 3rem;
+    width: 3rem;
+    height: 3rem;
+}
+.modal .cerrar-modal img {
+    width: 100%;
+}
+
+.modal .formulario {
+    max-width: 40rem;
+    width: 20rem;
+    transition-property: all;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in;
+    opacity: 0;
+}
+.modal label {
+    color: var(--blanco);
+}
+body .modal {
+    overflow: hidden;
+}
+
+.modal .formulario.animar {
+    position: relative;
+    opacity: 1;
+}
+
+.modal .formulario.cerrar {
+    opacity: 0;
+}
+
+.modal label {
+    text-align: left;
+}
+
 .formulario legend {
-    font-size: 3.6rem;
+    font-size: 2.5rem;
     text-align: center;
     display: block;
     text-transform: uppercase;
     color: var(--blanco);
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     padding-bottom: 1rem;
     border-bottom: 2px solid var(--azul);
 }
@@ -134,7 +198,7 @@ header h1 {
 }
 
 .formulario label {
-    color: rgb(26, 102, 133);
+    color: rgb(168, 165, 165);
     font-size: 2.3rem;
     text-align: center;
     margin-bottom: 2rem;
@@ -147,17 +211,22 @@ header h1 {
 .formulario input[type="number"] {
     background-color: var(--gris-claro);
     border-radius: 1rem;
-    /* padding: 1rem; */
     border: none;
     flex: 1;
     font-size: 1.6rem;
     width: 100%;
-    
+    padding: 1rem;
 }
 .formulario input[type="text"]::placeholder{
     font-size: 1.9rem;
-
+    text-align: center;
 }
+
+.formulario input[type="number"]::placeholder{
+    font-size: 1.9rem;
+    text-align: center;
+}
+
 
 .formulario input[type="submit"] {
     background-color: rgb(26, 102, 133);
@@ -173,6 +242,7 @@ header h1 {
     transition: background-color 300ms ease;
     border-radius: 1rem;
 }
+
 @media (min-width: 768px) {
     .formulario input[type="submit"] {
         padding: 1rem 5rem;
@@ -195,31 +265,43 @@ header h1 {
     background-color: var(--gris-claro);
 }
 
-.alerta {
-    padding: 2rem 5rem;
-    max-width: 60rem;
-    margin: 2rem auto 2rem auto;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 1.8rem;
+
+
+.formulario input[type="text"].nuevo-presupuesto, 
+.formulario input[type="number"].nuevo-presupuesto {
+    font-size: 2rem;
     text-align: center;
 }
-.alerta.error {
-    background-color: var(--blanco);
-    border-left: 5px solid #b91c1c;
-    color: #b91c1c;
-}
-.alerta.success {
-}
 
 
-.dos-columnas {
-    flex-direction: column;
+/* lista gastos */
+.lista__gastos{
+    margin-top: 10rem;
 }
-.dos-columnas :first-child {
-    margin-bottom: 4rem;
-}
+
+/* ---------------------------------------------------------------------------------------------------------------------------- */
+
+/* media queries */
+
 @media (min-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+    .contenedor {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .formulario {
+        padding: 5rem 0;
+        width: 90%;
+    }
+
+    /* control presupuesto */
+    .contenido-presupuesto p {
+        text-align: left;
+    }
+
     .dos-columnas {
         flex-direction: row;
         align-items: center;
@@ -228,40 +310,26 @@ header h1 {
     .dos-columnas > div {
         width: 50%;
     }
-    .dos-columnas :first-child {
-        margin-bottom: 0;
+
+    /* modal */
+    .modal .formulario {
+        max-width: 40rem;
+        width: 40rem;
     }
 }
-.formulario input[type="text"].nuevo-presupuesto, 
-.formulario input[type="number"].nuevo-presupuesto {
-    font-size: 2.8rem;
-    text-align: center;
-}
 
-
-
-.contenido-presupuesto {
-    width: 100%;
-}
-.contenido-presupuesto p {
-    font-weight: 400;
-    color: var(--gris-oscuro);
-    font-size: 2.4rem;
-    text-align: center;
-}
-@media (min-width: 768px) {
-    .contenido-presupuesto p {
-        text-align: left;
+@media (min-width: 1024px) { 
+    .contenedor {
+        width: 45%;
     }
+
+    .formulario {
+        padding: 5rem 0;
+        width: 80%;
+    }
+    
 }
-.contenido-presupuesto p.negativo,
-.contenido-presupuesto p.negativo span {
-    color: red;
-}
-.contenido-presupuesto span {
-    font-weight: 900;
-    color: var(--azul);
-}
+
 .reset-app {
     border: none;
     background-color: #db2777;
@@ -382,52 +450,7 @@ main {
     cursor: pointer;
 }
 
-.modal {
-    position: absolute;
-    background-color: rgb(0 0 0 / 0.92);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-.modal .cerrar-modal {
-    position: absolute;
-    right: 3rem;
-    top: 3rem;
-    width: 3rem;
-    height: 3rem;
-}
-.modal .cerrar-modal img {
-    width: 100%;
-}
 
-.modal .formulario {
-    max-width: 80rem;
-    width: 40rem;
-    transition-property: all;
-    transition-duration: 300ms;
-    transition-timing-function: ease-in;
-    opacity: 0;
-}
-.modal label {
-    color: var(--blanco);
-}
-body .modal {
-    overflow: hidden;
-}
-
-.modal .formulario.animar {
-    position: relative;
-    opacity: 1;
-}
-
-.modal .formulario.cerrar {
-    opacity: 0;
-}
-
-.modal label {
-    text-align: left;
-}
 
 .CircularProgressbar .CircularProgressbar-text {
     font-size: 1rem !important;

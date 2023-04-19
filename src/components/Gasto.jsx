@@ -24,11 +24,7 @@ const Gasto = ({ gasto }) => {
         <div className='gasto sombra'>
             <div className="contenido-gasto">
                 <img src={diccionarioIconos[categoria]} alt={categoria} />
-<<<<<<< HEAD
                 {/* {console.log(diccionarioIconos[categoria])} */}
-=======
-                {console.log(diccionarioIconos[categoria])}
->>>>>>> main
                 <div className="descripcion-gasto">
                     <p className='categoria'>{categoria}</p>
                     <p className='nombre-gasto'>{nombre}</p>
@@ -36,10 +32,7 @@ const Gasto = ({ gasto }) => {
                 </div>
             </div>
             <p className='cantidad-gasto'>${valor}</p>
-<<<<<<< HEAD
             {console.log(gasto.valor)}
-=======
->>>>>>> main
         </div>
     )
 }

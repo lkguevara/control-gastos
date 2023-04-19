@@ -32,7 +32,7 @@ const ControlPresupuesto = ({presupuesto}) => {
         const totalDisponible = presupuesto - totalGastos;
         setDisponible(totalDisponible);
 
-        
+
 
         console.log(totalGastos);
     }, [gastos]);
@@ -40,10 +40,7 @@ const ControlPresupuesto = ({presupuesto}) => {
     const guardarGasto = gasto => {
         gasto.id = generateId();
         gasto.fecha = Date.now();
-<<<<<<< HEAD
         gasto.valor = parseFloat(gasto.valor);
-=======
->>>>>>> main
       setGastos([
         ...gastos,
         gasto

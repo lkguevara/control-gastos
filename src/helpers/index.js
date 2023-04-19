@@ -5,3 +5,11 @@ export const generateId = () => {
     return random + fecha
 }
 
+export const formatearFecha = (fecha) => {
+    const date = new Date(fecha)
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+
+    return `${day}/${month}/${year}`
+}

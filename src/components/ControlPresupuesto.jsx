@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import Modal from './Modal';
 import { generateId } from '../helpers';
+import ListaGastos from './ListaGastos';
 
 
 const ControlPresupuesto = ({presupuesto}) => {
@@ -22,6 +23,7 @@ const ControlPresupuesto = ({presupuesto}) => {
 
     const guardarGasto = gasto => {
         gasto.id = generateId();
+        gasto.fecha = Date.now();
       setGastos([
         ...gastos,
         gasto
@@ -47,7 +49,7 @@ const ControlPresupuesto = ({presupuesto}) => {
 
 
   return (
-    <>
+    <div className={modal ? 'fijar' : ''}>
         <div className='contenedor-presupuesto contenedor sombra dos-columnas'>
             <p>Gráfica</p>
             <div className="contenido-presupuesto">
@@ -81,8 +83,9 @@ const ControlPresupuesto = ({presupuesto}) => {
                     guardarGasto={guardarGasto}
                 />
         }
-        
-    </>
+        <ListaGastos gastos={gastos}/>
+     
+    </div>
    
   )
 }

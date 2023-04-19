@@ -16,53 +16,68 @@ const ControlPresupuesto = ({presupuesto}) => {
         );
     }
 
-    // estados
+    // modales
     const [ modal, setModal ] = useState(false);
     const [ animarModal, setAnimarModal ] = useState(false);
-    const [ gastos, setGastos ] = useState([]);
 
+    // gastos
+    const [ gastos, setGastos ] = useState([]);
     const [disponible, setDisponible] = useState(0);
     const [gastado, setGastado] = useState(0);
 
+    // editar los gastos
+    const [gastoEdit, setGastoEdit] = useState({});
 
     useEffect(() => {
+        // sumar los gastos
         const totalGastos = gastos.reduce((total, gasto) => total + gasto.valor, 0);
         setGastado(totalGastos);
-
+        // restar del presupuesto
         const totalDisponible = presupuesto - totalGastos;
         setDisponible(totalDisponible);
-
-
-
-        console.log(totalGastos);
     }, [gastos]);
 
-    const guardarGasto = gasto => {
-        gasto.id = generateId();
-        gasto.fecha = Date.now();
-        gasto.valor = parseFloat(gasto.valor);
-      setGastos([
-        ...gastos,
-        gasto
-      ])
+    useEffect(() => {
+        if (Object.keys(gastoEdit).length > 0) {
+            setModal(true);
+            setTimeout(() => {
+                setAnimarModal(true);
+            }, 300);
+        }
+    }, [gastoEdit]);
 
+    const guardarGasto = gasto => {
+        if (gasto.id){
+            //actualizar gasto
+            const actualizarGastos = gastos.map(gastoActual => gastoActual.id === gasto.id ? gasto : gastoActual);
+            setGastos(actualizarGastos);
+        }
+        else {
+            // nuevo gasto
+            gasto.id = generateId();
+            gasto.fecha = Date.now();
+            gasto.valor = parseFloat(gasto.valor);
+        setGastos([
+            ...gastos,
+            gasto
+        ])
+    }   
         setAnimarModal(false);
         setTimeout(() => {
             setModal(false);
         }
         , 500);
-
     }
     
     // handle add expense
     const handleAddExpense = () => {
         setModal(true);
+
+        setGastoEdit({});
+        setTimeout(() => {
+            setAnimarModal(true);
+        }, 500);
     }
-
-    setTimeout(() => {
-        setAnimarModal(true);
-    }, 1000);
-
 
 
   return (
@@ -98,9 +113,13 @@ const ControlPresupuesto = ({presupuesto}) => {
                     animarModal={animarModal} 
                     setAnimarModal={setAnimarModal}
                     guardarGasto={guardarGasto}
+                    gastoEdit={gastoEdit}
                 />
         }
-        <ListaGastos gastos={gastos}/>
+        <ListaGastos 
+            gastos={gastos}
+            setGastoEdit={setGastoEdit}
+        />
      
     </div>
    

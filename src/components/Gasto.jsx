@@ -17,8 +17,21 @@ const diccionarioIconos = {
     'suscripciones': iconoSuscripciones
 };
 
-const Gasto = ({ gasto }) => {
+const Gasto = ({ gasto, setGastoEdit }) => {
     const { categoria, valor, nombre, fecha } = gasto;
+
+    // handle para editar gasto
+    const handleEditExpense = () => {
+        setGastoEdit(gasto);
+        console.log('editando gasto');
+        
+    }
+
+    // handle para eliminar gasto
+    const handleDeleteExpense = () => {
+        console.log('eliminando gasto');
+    }
+
 
     return (
         <div className='gasto sombra'>
@@ -31,8 +44,15 @@ const Gasto = ({ gasto }) => {
                     <p className='fecha-gasto'>Agregado el: <span>{formatearFecha(fecha)}</span></p>
                 </div>
             </div>
-            <p className='cantidad-gasto'>${valor}</p>
-            {console.log(gasto.valor)}
+
+            <div className="editContainer">
+                <p className='cantidad-gasto'>${valor}</p>
+                <div className="buttonsEdit">
+                    <button className='deleteButton' onClick={handleEditExpense}>Editar</button>
+                    <button className='deleteButton' onClick={handleDeleteExpense}>Eliminar</button>
+                </div>
+            </div>
+            
         </div>
     )
 }

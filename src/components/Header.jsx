@@ -12,6 +12,8 @@ const Header = ({ presupuesto, setPresupuesto, presupuestoValido, setPresupuesto
           presupuestoValido 
           ? <ControlPresupuesto 
               presupuesto = {presupuesto}
+              setPresupuesto = {setPresupuesto}
+              setPresupuestoValido = {setPresupuestoValido}
             />
             
           : <Presupuesto 

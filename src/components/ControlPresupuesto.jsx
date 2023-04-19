@@ -5,7 +5,7 @@ import ListaGastos from './ListaGastos';
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 
-const ControlPresupuesto = ({presupuesto}) => {
+const ControlPresupuesto = ({presupuesto, setPresupuesto, setPresupuestoValido}) => {
 
     const formatearCantidad = (cantidad) => {
         return cantidad.toLocaleString(
@@ -123,6 +123,18 @@ const ControlPresupuesto = ({presupuesto}) => {
         }, 500);
     }
 
+    // reset app
+    const handleResetApp = () => {
+      const confirmacion = window.confirm("¿Está seguro que desea resetear la app?");
+      if (confirmacion) {
+        setGastos([]);
+        setPresupuesto(0);
+        setPresupuestoValido (false);
+      }
+
+    }
+
+
 
   return (
     <div className={modal ? 'fijar' : ''}>
@@ -130,7 +142,7 @@ const ControlPresupuesto = ({presupuesto}) => {
             <div className="">
                 <CircularProgressbar 
                     styles={buildStyles({
-                        pathColor: '#2B3467',
+                        pathColor: porcentaje > 100 ? '#DB2777': '#2B3467',
                         trailColor: '#f5f5f5',
                         // cambiar el color del texto
                         textColor: '#2B3467',
@@ -145,7 +157,7 @@ const ControlPresupuesto = ({presupuesto}) => {
             <div className="contenido-presupuesto">
 
                 <button className='add__expense' onClick={handleAddExpense}>Añadir gasto</button>
-                <button className='reset__app'>Reset app</button>
+                <button className='reset__app' onClick={handleResetApp}>Reset app</button>
 
 
                 <p>
@@ -153,7 +165,7 @@ const ControlPresupuesto = ({presupuesto}) => {
                     {/* {console.log(presupuesto)} */}
                 </p>
 
-                <p>
+                <p className={`${disponible < 0 ? 'negativo' : ''}`}>
                     <span>Disponible:</span> {formatearCantidad(disponible)}
                     {/* {console.log(disponible)} */}
                 </p>

@@ -22,10 +22,21 @@ const ControlPresupuesto = ({presupuesto}) => {
     const [ animarModal, setAnimarModal ] = useState(false);
 
     // gastos
-    const [ gastos, setGastos ] = useState([]);
+    const [ gastos, setGastos ] = useState(
+        localStorage.getItem('gastos') ? JSON.parse(localStorage.getItem('gastos')) : []
+    );
     const [porcentaje, setPorcentaje] = useState(0);
     const [disponible, setDisponible] = useState(0);
     const [gastado, setGastado] = useState(0);
+
+    // localStorage para gastos
+    useEffect(() => {
+        // json.stringify convierte un arreglo a string
+        localStorage.setItem('gastos', JSON.stringify(gastos) ?? []);
+    }, [gastos]);
+
+
+
 
     // editar los gastos
     const [gastoEdit, setGastoEdit] = useState({});

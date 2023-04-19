@@ -17,7 +17,7 @@ const diccionarioIconos = {
     'suscripciones': iconoSuscripciones
 };
 
-const Gasto = ({ gasto, setGastoEdit }) => {
+const Gasto = ({ gasto, setGastoEdit, eliminarGasto}) => {
     const { categoria, valor, nombre, fecha } = gasto;
 
     // handle para editar gasto
@@ -27,7 +27,7 @@ const Gasto = ({ gasto, setGastoEdit }) => {
 
     // handle para eliminar gasto
     const handleDeleteExpense = () => {
-        console.log('eliminando gasto');
+        eliminarGasto(gasto.id);
     }
 
 

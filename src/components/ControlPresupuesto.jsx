@@ -79,6 +79,18 @@ const ControlPresupuesto = ({presupuesto}) => {
           setModal(false)
         }, 500)
       }
+
+    //   eliminar gasto
+    const eliminarGasto = id => {
+        const confirmacion = window.confirm("¿Está seguro que desea eliminar este gasto?");
+      
+        if (confirmacion) {
+          // trae los id que no sean iguales al id que se le pasa
+          const gastosFiltrados = gastos.filter(gasto => gasto.id !== id);
+          //   actualiza el estado
+          setGastos(gastosFiltrados); 
+        }
+      }
       
     
     // handle add expense
@@ -134,6 +146,7 @@ const ControlPresupuesto = ({presupuesto}) => {
         <ListaGastos 
             gastos={gastos}
             setGastoEdit={setGastoEdit}
+            eliminarGasto={eliminarGasto}
         />
      
     </div>

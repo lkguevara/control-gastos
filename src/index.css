@@ -24,10 +24,10 @@ html {
     box-sizing: inherit;
 }
 
-/* .fijar {
+.fijar {
     overflow: hidden;
-    height: 100vh;
-} */
+    height: 90vh;
+}
 
 h1 {
     font-size: 2.5rem;
@@ -275,108 +275,18 @@ body .modal {
 
 
 /* lista gastos */
-.lista__gastos{
-    margin-top: 10rem;
-}
-
-/* ---------------------------------------------------------------------------------------------------------------------------- */
-
-/* media queries */
-
-@media (min-width: 768px) {
-    h1 {
-        font-size: 3rem;
-    }
-    .contenedor {
-        width: 60%;
-        margin: 0 auto;
-    }
-
-    .formulario {
-        padding: 5rem 0;
-        width: 90%;
-    }
-
-    /* control presupuesto */
-    .contenido-presupuesto p {
-        text-align: left;
-    }
-
-    .dos-columnas {
-        flex-direction: row;
-        align-items: center;
-        gap: 4rem;
-    }
-    .dos-columnas > div {
-        width: 50%;
-    }
-
-    /* modal */
-    .modal .formulario {
-        max-width: 40rem;
-        width: 40rem;
-    }
-}
-
-@media (min-width: 1024px) { 
-    .contenedor {
-        width: 45%;
-    }
-
-    .formulario {
-        padding: 5rem 0;
-        width: 80%;
-    }
-    
-}
-
-.reset-app {
-    border: none;
-    background-color: #db2777;
-    padding: 1rem;
+.contenedor-gasto{
     width: 100%;
-    text-align: center;
-    color: var(--blanco);
-    text-transform: uppercase;
-    font-weight: 900;
-    border-radius: 1rem;
-    transition-property: background-color;
-    transition-duration: 300ms;
 }
-.reset-app:hover {
-    background-color: #c71465;
-    cursor: pointer;
-}
-
-main {
-    padding-top: 10rem;
-}
-
-.filtros .campo {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-.filtros label {
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--gris-oscuro);
-}
-.filtros select {
-    flex: 1;
-    padding: 1rem;
-    border: none;
-    border-radius: 1rem;
-    text-align: center;
-    background-color: var(--gris-claro);
-}
-
 .listado-gastos {
     margin-top: 5rem;
+    background-color: var(--gris-claro);
 }
 .listado-gastos h2 {
-    color: var(--gris-oscuro);
+    color: var(--gris);
     font-weight: 900;
+    margin-top: 10rem;  
+    padding-top: 2rem;
 }
 .no-gastos {
     text-align: center;
@@ -388,8 +298,9 @@ main {
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
+    width: 90%;
+    margin: 0 auto;
     margin-bottom: 2rem;
-    width: 100%;
 }
 
 .cantidad-gasto {
@@ -449,6 +360,103 @@ main {
 .nuevo-gasto img:hover {
     cursor: pointer;
 }
+
+/* ---------------------------------------------------------------------------------------------------------------------------- */
+
+/* media queries */
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+    .contenedor {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .formulario {
+        padding: 5rem 0;
+        width: 90%;
+    }
+
+    /* control presupuesto */
+    .contenido-presupuesto p {
+        text-align: left;
+    }
+
+    .dos-columnas {
+        flex-direction: row;
+        align-items: center;
+        gap: 4rem;
+    }
+    .dos-columnas > div {
+        width: 50%;
+    }
+
+    /* modal */
+    .modal .formulario {
+        max-width: 40rem;
+        width: 40rem;
+    }
+    .gasto{width: 80%;}
+}
+
+@media (min-width: 1024px) { 
+    .contenedor {
+        width: 45%;
+    }
+
+    .formulario {
+        padding: 5rem 0;
+        width: 80%;
+    }
+
+    .gasto{width: 50%;}
+    
+}
+
+.reset-app {
+    border: none;
+    background-color: #db2777;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    color: var(--blanco);
+    text-transform: uppercase;
+    font-weight: 900;
+    border-radius: 1rem;
+    transition-property: background-color;
+    transition-duration: 300ms;
+}
+.reset-app:hover {
+    background-color: #c71465;
+    cursor: pointer;
+}
+
+main {
+    padding-top: 10rem;
+}
+
+.filtros .campo {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.filtros label {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--gris-oscuro);
+}
+.filtros select {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 1rem;
+    text-align: center;
+    background-color: var(--gris-claro);
+}
+
+
 
 
 

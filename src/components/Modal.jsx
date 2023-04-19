@@ -96,7 +96,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
             categoria: ''
         })
 
-        console.log(form)
+        // console.log(form)
 
 
     }

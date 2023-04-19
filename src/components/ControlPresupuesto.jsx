@@ -1,6 +1,7 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Modal from './Modal';
 import { generateId } from '../helpers';
+import ListaGastos from './ListaGastos';
 
 
 const ControlPresupuesto = ({presupuesto}) => {
@@ -15,13 +16,34 @@ const ControlPresupuesto = ({presupuesto}) => {
         );
     }
 
-    // modal add expense
+    // estados
     const [ modal, setModal ] = useState(false);
     const [ animarModal, setAnimarModal ] = useState(false);
     const [ gastos, setGastos ] = useState([]);
 
+    const [disponible, setDisponible] = useState(0);
+    const [gastado, setGastado] = useState(0);
+
+
+    useEffect(() => {
+        const totalGastos = gastos.reduce((total, gasto) => total + gasto.valor, 0);
+        setGastado(totalGastos);
+
+        const totalDisponible = presupuesto - totalGastos;
+        setDisponible(totalDisponible);
+
+        
+
+        console.log(totalGastos);
+    }, [gastos]);
+
     const guardarGasto = gasto => {
         gasto.id = generateId();
+        gasto.fecha = Date.now();
+<<<<<<< HEAD
+        gasto.valor = parseFloat(gasto.valor);
+=======
+>>>>>>> main
       setGastos([
         ...gastos,
         gasto
@@ -47,7 +69,7 @@ const ControlPresupuesto = ({presupuesto}) => {
 
 
   return (
-    <>
+    <div className={modal ? 'fijar' : ''}>
         <div className='contenedor-presupuesto contenedor sombra dos-columnas'>
             <p>Gráfica</p>
             <div className="contenido-presupuesto">
@@ -61,11 +83,11 @@ const ControlPresupuesto = ({presupuesto}) => {
                 </p>
 
                 <p>
-                    <span>Disponible:</span> {formatearCantidad(0)}
+                    <span>Disponible:</span> {formatearCantidad(disponible)}
                 </p>
 
                 <p>
-                    <span>Gastado:</span> {formatearCantidad(0)}
+                    <span>Gastado:</span> {formatearCantidad(gastado)}
                 </p>
             </div>
             
@@ -81,8 +103,9 @@ const ControlPresupuesto = ({presupuesto}) => {
                     guardarGasto={guardarGasto}
                 />
         }
-        
-    </>
+        <ListaGastos gastos={gastos}/>
+     
+    </div>
    
   )
 }

@@ -1,6 +1,5 @@
 import Header from "./components/Header"
 import React, { useState } from 'react'
-import ListaGastos from "./components/ListaGastos"
 
 function App() {
   
@@ -9,7 +8,7 @@ function App() {
 
 
   return (
-    <div>
+    <div >
      <Header 
       presupuesto = {presupuesto}
       setPresupuesto = {setPresupuesto}
@@ -17,9 +16,6 @@ function App() {
       setPresupuestoValido = {setPresupuestoValido}
      />
 
-     {
-        presupuestoValido && <ListaGastos />
-     }
     </div>
   )
 }

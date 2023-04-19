@@ -47,27 +47,39 @@ const ControlPresupuesto = ({presupuesto}) => {
     }, [gastoEdit]);
 
     const guardarGasto = gasto => {
-        if (gasto.id){
-            //actualizar gasto
-            const actualizarGastos = gastos.map(gastoActual => gastoActual.id === gasto.id ? gasto : gastoActual);
-            setGastos(actualizarGastos);
-        }
-        else {
-            // nuevo gasto
-            gasto.id = generateId();
-            gasto.fecha = Date.now();
-            gasto.valor = parseFloat(gasto.valor);
-        setGastos([
+        if (gasto.id) {
+          // actualizar gasto
+          const actualizarGastos = gastos.map(gastoActual => {
+            if (gastoActual.id === gasto.id) {
+              return {
+                ...gastoActual,
+                valor: parseFloat(gasto.valor)
+              }
+            } else {
+              return gastoActual
+            }
+          })
+          setGastos(actualizarGastos)
+        } else {
+          // nuevo gasto
+          const nuevoGasto = {
+            ...gasto,
+            id: generateId(),
+            fecha: Date.now(),
+            valor: parseFloat(gasto.valor)
+          }
+          setGastos([
             ...gastos,
-            gasto
-        ])
-    }   
-        setAnimarModal(false);
-        setTimeout(() => {
-            setModal(false);
+            nuevoGasto
+          ])
         }
-        , 500);
-    }
+      
+        setAnimarModal(false)
+        setTimeout(() => {
+          setModal(false)
+        }, 500)
+      }
+      
     
     // handle add expense
     const handleAddExpense = () => {
@@ -92,14 +104,17 @@ const ControlPresupuesto = ({presupuesto}) => {
 
                 <p>
                     <span>Presupuesto:</span> {formatearCantidad(presupuesto)}
+                    {console.log(presupuesto)}
                 </p>
 
                 <p>
                     <span>Disponible:</span> {formatearCantidad(disponible)}
+                    {console.log(disponible)}
                 </p>
 
                 <p>
                     <span>Gastado:</span> {formatearCantidad(gastado)}
+                    {console.log(gastado)}
                 </p>
             </div>
             

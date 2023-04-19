@@ -22,9 +22,7 @@ const Gasto = ({ gasto, setGastoEdit }) => {
 
     // handle para editar gasto
     const handleEditExpense = () => {
-        setGastoEdit(gasto);
-        console.log('editando gasto');
-        
+        setGastoEdit(gasto); 
     }
 
     // handle para eliminar gasto

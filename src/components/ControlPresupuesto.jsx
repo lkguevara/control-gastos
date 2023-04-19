@@ -2,7 +2,8 @@ import {useState, useEffect} from 'react'
 import Modal from './Modal';
 import { generateId } from '../helpers';
 import ListaGastos from './ListaGastos';
-
+import {CircularProgressbar, buildStyles} from 'react-circular-progressbar'
+import 'react-circular-progressbar/dist/styles.css'
 
 const ControlPresupuesto = ({presupuesto}) => {
 
@@ -22,6 +23,7 @@ const ControlPresupuesto = ({presupuesto}) => {
 
     // gastos
     const [ gastos, setGastos ] = useState([]);
+    const [porcentaje, setPorcentaje] = useState(0);
     const [disponible, setDisponible] = useState(0);
     const [gastado, setGastado] = useState(0);
 
@@ -32,9 +34,15 @@ const ControlPresupuesto = ({presupuesto}) => {
         // sumar los gastos
         const totalGastos = gastos.reduce((total, gasto) => total + gasto.valor, 0);
         setGastado(totalGastos);
+
         // restar del presupuesto
         const totalDisponible = presupuesto - totalGastos;
         setDisponible(totalDisponible);
+
+        // calcular el porcentaje gastado
+        const porcentajeGastado = (totalGastos / presupuesto) * 100;
+        setPorcentaje(porcentajeGastado);
+
     }, [gastos]);
 
     useEffect(() => {
@@ -60,6 +68,7 @@ const ControlPresupuesto = ({presupuesto}) => {
             }
           })
           setGastos(actualizarGastos)
+          setGastoEdit({})
         } else {
           // nuevo gasto
           const nuevoGasto = {
@@ -107,7 +116,21 @@ const ControlPresupuesto = ({presupuesto}) => {
   return (
     <div className={modal ? 'fijar' : ''}>
         <div className='contenedor-presupuesto contenedor sombra dos-columnas'>
-            <p>Gráfica</p>
+            <div className="">
+                <CircularProgressbar 
+                    styles={buildStyles({
+                        pathColor: '#2B3467',
+                        trailColor: '#f5f5f5',
+                        // cambiar el color del texto
+                        textColor: '#2B3467',
+                    })}
+                    value={gastado}
+                    maxValue={presupuesto}
+                    text={`${porcentaje.toFixed(2)}% Gastado`}
+
+                />
+            </div>
+
             <div className="contenido-presupuesto">
 
                 <button className='add__expense' onClick={handleAddExpense}>Añadir gasto</button>
@@ -116,17 +139,17 @@ const ControlPresupuesto = ({presupuesto}) => {
 
                 <p>
                     <span>Presupuesto:</span> {formatearCantidad(presupuesto)}
-                    {console.log(presupuesto)}
+                    {/* {console.log(presupuesto)} */}
                 </p>
 
                 <p>
                     <span>Disponible:</span> {formatearCantidad(disponible)}
-                    {console.log(disponible)}
+                    {/* {console.log(disponible)} */}
                 </p>
 
                 <p>
                     <span>Gastado:</span> {formatearCantidad(gastado)}
-                    {console.log(gastado)}
+                    {/* {console.log(gastado)} */}
                 </p>
             </div>
             
@@ -141,6 +164,7 @@ const ControlPresupuesto = ({presupuesto}) => {
                     setAnimarModal={setAnimarModal}
                     guardarGasto={guardarGasto}
                     gastoEdit={gastoEdit}
+                    setGastoEdit={setGastoEdit}
                 />
         }
         <ListaGastos 

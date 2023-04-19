@@ -1,7 +1,7 @@
 import cerrar from '../assets/cerrar.svg'
 import {useState, useEffect} from 'react'
 
-const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto, gastoEdit}) => {
+const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto, gastoEdit, setGastoEdit}) => {
 
     const [ form, setForm ] = useState({
         nombre: '',
@@ -27,6 +27,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto, gastoEdit})
     const ocultarModal = () => {
         setModal(false);
         setAnimarModal(false);
+        setGastoEdit({});
     }
 
     const handleChange = (e) => {
